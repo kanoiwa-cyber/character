@@ -220,6 +220,12 @@
   .consent input{accent-color:var(--red);width:20px;height:20px;flex:none;margin-top:2px;}
   .consent label{font-weight:500;font-size:.92rem;cursor:pointer;color:var(--ink);}
   .privacy{font-size:.82rem;color:var(--ink-soft);margin-top:8px;line-height:1.7;}
+  .notice{background:#fff6e2;border:1.5px solid var(--gold-line);border-left:5px solid var(--gold);border-radius:12px;padding:16px 18px;margin-bottom:28px;}
+  .notice__title{font-family:"Zen Maru Gothic";font-weight:700;color:#9a1419;margin:0 0 8px;}
+  .notice ul{margin:0;padding-left:1.15em;}
+  .notice li{color:var(--ink);font-size:.9rem;line-height:1.8;margin-bottom:7px;}
+  .notice li:last-child{margin-bottom:0;}
+  .notice strong{color:#9a1419;}
   .err{color:#b81d24;font-size:.84rem;font-weight:700;margin-top:6px;display:none;}
   .field.has-error input,.field.has-error textarea{border-color:var(--red);}
   .field.has-error .err{display:block;}
@@ -308,6 +314,13 @@
     </div>
 
     <form class="cream-card" id="entryForm" novalidate>
+      <div class="notice">
+        <p class="notice__title">📌 ご応募の前にご確認ください</p>
+        <ul>
+          <li>応募作品は、ご自身で考えた<strong>オリジナル</strong>に限ります。既存のキャラクターや作品の模倣・転用（いわゆる“パクリ”）、および第三者の<strong>著作権・肖像権を侵害する作品</strong>は、選考の対象外とさせていただきます。</li>
+          <li>採用にあたっては、病院の都合により、キャラクターの<strong>名前やデザインの一部を調整・変更</strong>させていただく場合があります。あらかじめご了承ください。</li>
+        </ul>
+      </div>
       <div class="field" data-req>
         <label for="name">お名前またはニックネーム <span class="req">必須</span></label>
         <input type="text" id="name" name="name" autocomplete="name" placeholder="例）かのいわ 花子 / はなちゃん">
@@ -328,6 +341,11 @@
           <label class="choice choice--other"><input type="radio" name="role" value="その他"><span>その他</span><input type="text" id="roleOther" placeholder="内容をご記入ください"></label>
         </div>
         <p class="err">あてはまるものを1つお選びください。</p>
+      </div>
+      <div class="field">
+        <label for="charName">キャラクターの名前 <span class="opt">任意</span></label>
+        <p class="hint">思いついたお名前があれば、ぜひご記入ください（未定でもかまいません）。<br>※採用の際は、病院の都合によりお名前を変更・調整させていただく場合があります。</p>
+        <input type="text" id="charName" name="charName" placeholder="例）かのいわ うさぴょん">
       </div>
       <div class="field" data-req-any>
         <label for="idea">キャラクターのアイデア <span class="req">必須</span></label>
@@ -395,9 +413,12 @@
 </div>
 
 <script>
-/* 送信先の設定：SUBMIT_ENDPOINT に受信先URLを設定すると記入内容＋画像が送信されます。
-   空のまま（""）だと外部送信せず内容を画面で確認できる「確認モード」で動作します。 */
-const SUBMIT_ENDPOINT = ""; // 例）"https://script.google.com/macros/s/xxxxx/exec"
+/* ▼▼▼ 応募データの送信先（ここだけ設定してください）▼▼▼
+   Google Apps Script をウェブアプリとして公開し、その「/exec」で終わるURLを
+   下の "" の中に貼り付けてください（手順は別紙のコード内コメント参照）。
+   例）const SUBMIT_ENDPOINT = "https://script.google.com/macros/s/AKfy.../exec";
+   空のまま（""）だと外部送信せず、内容を画面で確認できる「確認モード」で動作します。 */
+const SUBMIT_ENDPOINT = "https://script.google.com/macros/s/AKfycbz1ROa0YF-D9cZnwlMlkS-c9EgghOhwK-mXx_iXitinhXjfQD01aAV46Xff-G6zmOvF/exec"; // GASの /exec URL
 
 const MAX_FILES = 5, MAX_SIZE = 10 * 1024 * 1024, selectedFiles = [];
 const $ = (s, el=document) => el.querySelector(s);
@@ -453,28 +474,95 @@ function validate(){
   if(firstError){ firstError.scrollIntoView({behavior:"smooth", block:"center"}); }
   return !firstError;
 }
+// ファイルを送信用データに変換（画像は自動縮小してJPEG化、それ以外はそのままbase64）
+async function fileToData(file){
+  if(file.type && file.type.indexOf("image/") === 0){
+    try{ return await downscaleImage(file); }catch(e){ /* 失敗時はそのまま送る */ }
+  }
+  const b64 = await readAsBase64(file);
+  return { name:file.name, type:file.type || "application/octet-stream", data:b64 };
+}
+function readAsBase64(file){
+  return new Promise((res,rej)=>{
+    const r = new FileReader();
+    r.onload = ()=> res(String(r.result).split(",")[1] || "");
+    r.onerror = rej;
+    r.readAsDataURL(file);
+  });
+}
+function downscaleImage(file, maxSide=1600, quality=0.85){
+  return new Promise((res,rej)=>{
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = ()=>{
+      let w = img.naturalWidth, h = img.naturalHeight;
+      const scale = Math.min(1, maxSide / Math.max(w,h));
+      w = Math.max(1, Math.round(w*scale)); h = Math.max(1, Math.round(h*scale));
+      const canvas = document.createElement("canvas");
+      canvas.width = w; canvas.height = h;
+      canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+      URL.revokeObjectURL(url);
+      const dataUrl = canvas.toDataURL("image/jpeg", quality);
+      const base = (file.name || "image").replace(/\.[^.]+$/, "") + ".jpg";
+      res({ name:base, type:"image/jpeg", data:dataUrl.split(",")[1] });
+    };
+    img.onerror = ()=>{ URL.revokeObjectURL(url); rej(new Error("image load failed")); };
+    img.src = url;
+  });
+}
+// CORSの影響を受けずにGASへ送信する（隠しフォームをiframe宛にPOST）
+function submitViaIframe(url, payloadStr){
+  return new Promise(function(resolve){
+    var name = "gasf_" + Date.now();
+    var iframe = document.createElement("iframe");
+    iframe.name = name; iframe.style.display = "none";
+    var form = document.createElement("form");
+    form.action = url; form.method = "POST"; form.target = name;
+    form.acceptCharset = "UTF-8"; form.style.display = "none";
+    var ta = document.createElement("textarea");
+    ta.name = "payload"; ta.value = payloadStr; form.appendChild(ta);
+    document.body.appendChild(iframe);
+    document.body.appendChild(form);
+
+    var start = Date.now(), settled = false;
+    function done(){
+      if(settled) return; settled = true;
+      setTimeout(function(){
+        try{ document.body.removeChild(form); }catch(e){}
+        try{ document.body.removeChild(iframe); }catch(e){}
+      }, 1200);
+      resolve();
+    }
+    iframe.addEventListener("load", function(){
+      // 送信後（=約0.6秒以上経過）のロードを応答とみなす（初期about:blankを除外）
+      if(Date.now() - start > 600) done();
+    });
+    setTimeout(done, 12000); // 応答が取れなくても送信済みとして完了
+    form.submit();
+  });
+}
 form.addEventListener("submit", async e=>{
   e.preventDefault(); if(!validate()) return;
   const btn = $("#submitBtn"); btn.disabled = true; const original = btn.textContent; btn.textContent = "送信中…";
   let role = form.querySelector('input[name="role"]:checked').value;
   if(role === "その他"){ const o = $("#roleOther").value.trim(); role = o ? "その他（" + o + "）" : "その他"; }
-  const data = { name:$("#name").value.trim(), age:$("#age").value.trim(), role, idea:$("#idea").value.trim(), story:$("#story").value.trim(), publish:form.querySelector('input[name="publish"]:checked').value, files:selectedFiles.length };
+  const data = { name:$("#name").value.trim(), age:$("#age").value.trim(), role, charName:$("#charName").value.trim(), idea:$("#idea").value.trim(), story:$("#story").value.trim(), publish:form.querySelector('input[name="publish"]:checked').value, files:selectedFiles.length };
   try{
     if(SUBMIT_ENDPOINT){
-      const fd = new FormData();
-      Object.entries(data).forEach(([k,v]) => fd.append(k, v));
-      selectedFiles.forEach((f,i) => fd.append("file" + (i+1), f, f.name));
-      const res = await fetch(SUBMIT_ENDPOINT, { method:"POST", body:fd });
-      if(!res.ok) throw new Error("HTTP " + res.status);
+      const files = [];
+      for(const f of selectedFiles){ files.push(await fileToData(f)); }
+      const payload = { name:data.name, age:data.age, role:data.role, charName:data.charName, idea:data.idea, story:data.story, publish:data.publish, files:files };
+      // CORSの影響を受けない方式（隠しフォーム＋iframe）で確実に送信します
+      await submitViaIframe(SUBMIT_ENDPOINT, JSON.stringify(payload));
     }else{ await new Promise(r=>setTimeout(r, 500)); }
     showDone(data); form.reset(); selectedFiles.length = 0; renderPreviews();
     document.querySelectorAll(".choice.is-checked").forEach(c=>c.classList.remove("is-checked"));
   }catch(err){
-    alert("送信に失敗しました。時間をおいて再度お試しいただくか、院内の応募用紙をご利用ください。\n（" + err.message + "）");
+    alert("送信に失敗しました。通信環境をご確認のうえ再度お試しいただくか、院内の応募用紙をご利用ください。\n（" + err.message + "）");
   }finally{ btn.disabled = false; btn.textContent = original; }
 });
 function showDone(d){
-  const rows = [["お名前／ニックネーム", d.name],["あなたは", d.role],["添付ファイル", d.files > 0 ? d.files + "点" : "なし"]];
+  const rows = [["お名前／ニックネーム", d.name],["キャラクターの名前", d.charName || "（未記入）"],["あなたは", d.role],["添付ファイル", d.files > 0 ? d.files + "点" : "なし"]];
   $("#doneSummary").innerHTML = rows.map(([k,v]) => "<dt>" + k + "</dt><dd>" + escapeHtml(v || "—") + "</dd>").join("");
   overlay.classList.add("show");
 }
