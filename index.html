@@ -297,7 +297,7 @@
       <h2 class="greeting__title">みなさまへ</h2>
       <p>加納岩総合病院では、地域のみなさまに親しんでいただける<strong>公式マスコットキャラクター</strong>を募集します。当院は、安心と信頼の医療をめざし、患者さんやご家族に寄り添う病院でありたいと願っています。そんな私たちを、やさしく見守り、あたたかく彩ってくれる——そんなキャラクターのアイデアを、ぜひお寄せください。</p>
       <p><strong>今回の公募は「キャラクター（デザイン）」の募集です。</strong>お名前は、後日あらためて募集いたします。すでにお名前を考えている方は、その名前を添えてご応募いただいてもかまいません。（お名前募集のスケジュールは、後日このページと院内掲示でお知らせします。）</p>
-      <p>ご応募に、絵の上手さは関係ありません。職員も、患者さんも、地域のみなさまも、どなたでもご参加いただけます。下記のフォームに必要事項をご記入のうえ、イラストがあれば写真やファイルで添付してお送りください。</p>
+      <p>ご応募に、絵の上手い下手は関係ありません。職員も、患者さんも、地域のみなさまも、どなたでもご参加いただけます。下記のフォームに必要事項をご記入のうえ、イラストがあれば写真やファイルで添付してお送りください。</p>
       <p class="greeting__cta">あなたのアイデアが、これからの加納岩総合病院の“顔”になるかもしれません。<br>みなさまからのご応募を、心よりお待ちしています。</p>
       <p class="greeting__sign">加納岩総合病院　広報委員会</p>
     </div>
@@ -332,6 +332,11 @@
       <div class="field">
         <label for="age">年齢 <span class="opt">任意</span></label>
         <div class="age-row"><input type="number" id="age" name="age" min="0" max="120" inputmode="numeric" placeholder="例）35"><span>歳</span></div>
+      </div>
+      <div class="field">
+        <label for="tel">ご連絡先（お電話番号） <span class="opt">任意</span></label>
+        <p class="hint">※最優秀賞に選ばれた方へ、感謝状のお渡し等でご連絡させていただきます。</p>
+        <input type="tel" id="tel" name="tel" inputmode="tel" autocomplete="tel" placeholder="例）0553-22-2511">
       </div>
       <div class="field" data-req>
         <span class="legend">あなたについて教えてください <span class="req">必須</span></span>
@@ -549,12 +554,12 @@ form.addEventListener("submit", async e=>{
   const btn = $("#submitBtn"); btn.disabled = true; const original = btn.textContent; btn.textContent = "送信中…";
   let role = form.querySelector('input[name="role"]:checked').value;
   if(role === "その他"){ const o = $("#roleOther").value.trim(); role = o ? "その他（" + o + "）" : "その他"; }
-  const data = { name:$("#name").value.trim(), age:$("#age").value.trim(), role, charName:$("#charName").value.trim(), idea:$("#idea").value.trim(), story:$("#story").value.trim(), publish:form.querySelector('input[name="publish"]:checked').value, files:selectedFiles.length };
+  const data = { name:$("#name").value.trim(), age:$("#age").value.trim(), tel:$("#tel").value.trim(), role, charName:$("#charName").value.trim(), idea:$("#idea").value.trim(), story:$("#story").value.trim(), publish:form.querySelector('input[name="publish"]:checked').value, files:selectedFiles.length };
   try{
     if(SUBMIT_ENDPOINT){
       const files = [];
       for(const f of selectedFiles){ files.push(await fileToData(f)); }
-      const payload = { name:data.name, age:data.age, role:data.role, charName:data.charName, idea:data.idea, story:data.story, publish:data.publish, files:files };
+      const payload = { name:data.name, age:data.age, tel:data.tel, role:data.role, charName:data.charName, idea:data.idea, story:data.story, publish:data.publish, files:files };
       // CORSの影響を受けない方式（隠しフォーム＋iframe）で確実に送信します
       await submitViaIframe(SUBMIT_ENDPOINT, JSON.stringify(payload));
     }else{ await new Promise(r=>setTimeout(r, 500)); }
