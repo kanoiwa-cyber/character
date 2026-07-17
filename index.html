@@ -185,7 +185,7 @@
   .req{background:var(--red);color:#fff;}
   .opt{background:#eaddb8;color:var(--ink-soft);}
   .hint{font-size:.84rem;color:var(--ink-soft);font-weight:400;margin:4px 0 9px;line-height:1.6;}
-  input[type=text],input[type=number],textarea{width:100%;font-family:inherit;font-size:1rem;color:var(--ink);background:#fffdf7;border:1.5px solid var(--line-cream);border-radius:11px;padding:13px 15px;transition:border-color .15s, box-shadow .15s;}
+  input[type=text],input[type=tel],input[type=number],textarea{width:100%;font-family:inherit;font-size:1rem;color:var(--ink);background:#fffdf7;border:1.5px solid var(--line-cream);border-radius:11px;padding:13px 15px;transition:border-color .15s, box-shadow .15s;}
   textarea{resize:vertical;min-height:120px;line-height:1.7;}
   input::placeholder,textarea::placeholder{color:#b39a6a;}
   input:focus,textarea:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 4px rgba(184,29,36,.16);}
@@ -333,10 +333,11 @@
         <label for="age">年齢 <span class="opt">任意</span></label>
         <div class="age-row"><input type="number" id="age" name="age" min="0" max="120" inputmode="numeric" placeholder="例）35"><span>歳</span></div>
       </div>
-      <div class="field">
-        <label for="tel">ご連絡先（お電話番号） <span class="opt">任意</span></label>
+      <div class="field" data-req>
+        <label for="tel">ご連絡先（お電話番号） <span class="req">必須</span></label>
         <p class="hint">※最優秀賞に選ばれた方へ、感謝状のお渡し等でご連絡させていただきます。</p>
         <input type="tel" id="tel" name="tel" inputmode="tel" autocomplete="tel" placeholder="例）0553-22-2511">
+        <p class="err">ご連絡先（お電話番号）をご入力ください。</p>
       </div>
       <div class="field" data-req>
         <span class="legend">あなたについて教えてください <span class="req">必須</span></span>
@@ -475,6 +476,7 @@ function validate(){
   clearErrors(); let firstError = null;
   const mark = field => { field.classList.add("has-error"); if(!firstError) firstError = field; };
   if(!$("#name").value.trim()) mark($("#name").closest(".field"));
+  if(!$("#tel").value.trim()) mark($("#tel").closest(".field"));
   if(!form.querySelector('input[name="role"]:checked')) mark($("#roleChoices").closest(".field"));
   if(!$("#idea").value.trim() && selectedFiles.length === 0) mark($("#idea").closest(".field"));
   if(!form.querySelector('input[name="publish"]:checked')) mark($("#publishChoices").closest(".field"));
