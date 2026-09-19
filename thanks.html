@@ -69,12 +69,6 @@
   .hero h1 span{display:inline-block;}
   .hero__lead{max-width:620px;margin:16px auto 0;color:var(--ink-cream-soft);font-size:1rem;}
 
-  /* いまの段階 */
-  .now{margin:28px auto 0;max-width:620px;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:4px 18px;text-align:left;padding:16px 22px;border-radius:14px;background:rgba(20,2,3,.55);border:2px dashed var(--gold);box-shadow:var(--shadow-sm);}
-  .now__lab{grid-row:span 2;font-family:"Zen Maru Gothic",sans-serif;font-weight:900;color:#5a1015;background:var(--gold-grad);border:1.5px solid var(--gold-deep);border-radius:10px;padding:8px 12px;font-size:.9rem;line-height:1.3;text-align:center;}
-  .now__what{font-family:"Zen Maru Gothic",sans-serif;font-weight:900;font-size:1.2rem;color:#fff5df;line-height:1.4;}
-  .now__when{font-size:.9rem;color:var(--gold-bright);font-weight:700;}
-
   section{padding:50px 0;position:relative;z-index:1;}
   .sec-head{text-align:center;margin-bottom:28px;}
   .sec-head h2{font-size:clamp(1.5rem,5.2vw,2.05rem);margin:0;color:var(--gold-bright);text-shadow:0 2px 8px rgba(0,0,0,.5);}
@@ -100,12 +94,6 @@
   .tl__when{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-weight:700;color:var(--gold-bright);font-size:.95rem;}
   .tl__what{font-family:"Zen Maru Gothic",sans-serif;font-weight:900;font-size:1.15rem;color:#fff5df;margin:2px 0 4px;}
   .tl__txt{margin:0;font-size:.93rem;color:var(--ink-cream);}
-  .tag{font-size:.72rem;font-weight:700;padding:2px 10px;border-radius:999px;border:1px solid var(--gold-line);color:var(--ink-cream-soft);}
-  .tl__item.is-done .tl__no{background:#2b0709;color:var(--ink-cream-soft);border-color:#7d6530;}
-  .tl__item.is-done .tl__box{opacity:.72;}
-  .tl__item.is-now .tl__no{background:var(--gold-grad);color:#5a1015;border-color:var(--gold-deep);box-shadow:0 0 0 5px rgba(228,192,90,.22);}
-  .tl__item.is-now .tl__box{border:2px solid var(--gold);box-shadow:var(--shadow-sm);}
-  .tl__item.is-now .tag{background:var(--gold-grad);color:#5a1015;border-color:var(--gold-deep);}
 
   /* 院内投票 */
   .vote__card{padding:clamp(24px,5vw,40px);max-width:860px;margin-inline:auto;}
@@ -136,6 +124,7 @@
   .duo__item{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1.5px solid rgba(201,168,72,.55);border-radius:14px;padding:20px 22px;}
   .duo__item h3{margin:0 0 6px;color:var(--gold-bright);font-size:1.08rem;}
   .duo__item p{margin:0;font-size:.93rem;}
+  .duo__item .duo__note{margin-top:8px;font-size:.84rem;color:var(--ink-cream-soft);}
 
   footer{background:linear-gradient(180deg,#1c0304,#120203);border-top:3px solid var(--gold-line);text-align:center;padding:40px 20px;position:relative;z-index:1;}
   footer .fin{font-family:"Zen Maru Gothic",sans-serif;font-weight:900;color:var(--gold-bright);font-size:clamp(1.1rem,4.2vw,1.5rem);margin:0 0 14px;}
@@ -150,8 +139,6 @@
     .rules li{grid-template-columns:1fr;}
     .staff{grid-template-columns:1fr;text-align:center;}
     .duo{grid-template-columns:1fr;}
-    .now{grid-template-columns:1fr;text-align:center;}
-    .now__lab{grid-row:auto;justify-self:center;}
   }
   @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.btn{transition:none;}}
   @media print{
@@ -187,11 +174,6 @@
     <h1><span>たくさんのご応募、</span><span>ありがとうございました</span></h1>
     <p class="hero__lead">職員、患者さん・ご家族、地域のみなさまから、思いのこもったキャラクターをお寄せいただきました。ここからは、選考の段階に進みます。</p>
 
-    <div class="now" aria-live="polite">
-      <span class="now__lab">いまは<br>ここ</span>
-      <span class="now__what" id="nowWhat">応募作品のとりまとめ</span>
-      <span class="now__when" id="nowWhen">10月1日〜10月7日</span>
-    </div>
   </div>
 </section>
 
@@ -214,44 +196,44 @@
       <p>当院の“顔”が決まるまでの流れです。</p>
     </div>
     <ol class="tl" id="timeline">
-      <li class="tl__item" data-start="2026-08-01" data-end="2026-09-30">
+      <li class="tl__item">
         <span class="tl__no">1</span>
         <div class="tl__box">
-          <div class="tl__when">8月1日〜9月30日 <span class="tag" data-tag></span></div>
+          <div class="tl__when">8月1日〜9月30日</div>
           <div class="tl__what">キャラクター（デザイン）の公募</div>
           <p class="tl__txt">総合窓口の投票箱とWEB受付フォームで受け付けました。</p>
         </div>
       </li>
-      <li class="tl__item" data-start="2026-10-01" data-end="2026-10-07">
+      <li class="tl__item">
         <span class="tl__no">2</span>
         <div class="tl__box">
-          <div class="tl__when">10月1日〜10月7日 <span class="tag" data-tag></span></div>
+          <div class="tl__when">10月1日〜10月7日</div>
           <div class="tl__what">応募作品のとりまとめ</div>
           <p class="tl__txt">紙とWEBでお寄せいただいた作品をひとつにまとめ、院内投票の準備を進めます。</p>
         </div>
       </li>
-      <li class="tl__item" data-start="2026-10-08" data-end="2026-10-20">
+      <li class="tl__item">
         <span class="tl__no">3</span>
         <div class="tl__box">
-          <div class="tl__when">10月8日（木）〜10月20日（火） <span class="tag" data-tag></span></div>
+          <div class="tl__when">10月8日（木）〜10月20日（火）</div>
           <div class="tl__what">職員による院内投票</div>
-          <p class="tl__txt">すべての応募作品を院内に掲示し、医療法人加納岩の職員が投票して、上位5作品（TOP5）を選びます。<a href="#vote">投票のしくみはこちら</a></p>
+          <p class="tl__txt">すべての応募作品を院内に掲示し、社会医療法人加納岩の職員が投票して、上位5作品（TOP5）を選びます。<a href="#vote">投票のしくみはこちら</a></p>
         </div>
       </li>
-      <li class="tl__item" data-start="2026-10-21" data-end="2026-11-08">
+      <li class="tl__item">
         <span class="tl__no">4</span>
         <div class="tl__box">
-          <div class="tl__when">11月8日（日） <span class="tag" data-tag></span></div>
+          <div class="tl__when">11月8日（日）</div>
           <div class="tl__what">加納岩フェスで TOP5 を発表</div>
           <p class="tl__txt">院内投票で選ばれた5作品を、加納岩フェスの会場でお披露目します。</p>
         </div>
       </li>
-      <li class="tl__item" data-start="2026-11-09" data-end="2099-12-31">
+      <li class="tl__item">
         <span class="tl__no">5</span>
         <div class="tl__box">
-          <div class="tl__when">TOP5 発表のあと <span class="tag" data-tag></span></div>
+          <div class="tl__when">TOP5 発表のあと</div>
           <div class="tl__what">総選挙（どなたでも投票できます）</div>
-          <p class="tl__txt">TOP5 が決まったあとは、患者さん・ご家族、地域のみなさまなど、<strong style="color:var(--gold-bright)">どなたでも投票</strong>いただけます。みなさまの1票で、公式マスコットキャラクターが決まります。投票方法は、あらためてこのページと院内掲示でお知らせします。</p>
+          <p class="tl__txt">地域のみなさま、職員など、<strong style="color:var(--gold-bright)">どなたでも投票</strong>いただけます。みなさまの1票で、公式マスコットキャラクターが決まります。投票方法は、あらためてこのページと院内掲示でお知らせします。</p>
         </div>
       </li>
     </ol>
@@ -266,11 +248,11 @@
     </div>
 
     <div class="cream-card vote__card">
-      <p class="vote__lead">院内投票は、ご応募いただいたすべての作品の中から、総選挙に進む<strong>上位5作品（TOP5）</strong>を選ぶためのものです。日々患者さんと接している職員一人ひとりが、「当院にふさわしく、誰からも親しまれるキャラクター」という視点で1票を投じます。今回の投票（10月8日〜10月20日）は医療法人加納岩の職員のみで行い、TOP5 が決まったあとの総選挙は、どなたでもご参加いただけます。</p>
+      <p class="vote__lead">院内投票は、ご応募いただいたすべての作品の中から、総選挙に進む<strong>上位5作品（TOP5）</strong>を選ぶためのものです。日々患者さんと接している職員一人ひとりが、「当院にふさわしく、誰からも親しまれるキャラクター」という視点で1票を投じます。今回の投票（10月8日〜10月20日）は社会医療法人加納岩の職員のみで行い、TOP5 が決まったあとの総選挙は、どなたでもご参加いただけます。</p>
 
       <dl class="facts">
         <div class="fact"><dt>投票期間</dt><dd>10月8日〜10月20日<small>2026年（木）〜（火）</small></dd></div>
-        <div class="fact"><dt>投票できる人</dt><dd>医療法人加納岩の職員<small>今回の院内投票は職員限定</small></dd></div>
+        <div class="fact"><dt>投票できる人</dt><dd>社会医療法人加納岩の職員<small>今回の院内投票は職員限定</small></dd></div>
         <div class="fact"><dt>投票できる数</dt><dd>1人1票<small>期間中1回限り</small></dd></div>
       </dl>
 
@@ -287,7 +269,7 @@
         <li><b>本人確認</b><span>投票時に職員番号と氏名を入力し、職員本人による投票であることを確認します。</span></li>
         <li><b>重複・無効票の除外</b><span>同じ職員番号からの2回目以降の投票や、職員番号と氏名が一致しない投票は、集計から除きます。</span></li>
         <li><b>専用ページで実施</b><span>投票は、職員だけが入れるパスワード付きのWEB投票ページで受け付けます。</span></li>
-        <li><b>すべての作品が対象</b><span>お寄せいただいた作品は、紙でのご応募もWEBからのご応募も、すべて同じ大きさ・同じ形式で掲示し、同じ条件で投票の対象とします。</span></li>
+        <li><b>すべての作品が対象</b><span>紙でのご応募も、WEBからのご応募も、いただいた内容をそのまま審査させていただきます。</span></li>
         <li><b>キャラクターの原案に投票</b><span>今回選ぶのは、キャラクターの原案（デザイン）のみです。応募時に添えられたお名前は、投票の対象にしません。</span></li>
         <li><b>応募者名は非表示</b><span>作品は応募者のお名前を伏せて番号のみで掲示し、作品そのものの魅力で選びます。</span></li>
         <li><b>集計</b><span>広報委員会が集計し、得票数の多い順に上位5作品を選びます。</span></li>
@@ -317,7 +299,8 @@
       </div>
       <div class="duo__item">
         <h3>ご応募いただいた方へのご連絡</h3>
-        <p>選考結果に関するご連絡は、応募時にご記入いただいたご連絡先へ、広報委員会から差し上げます。個別の選考状況についてのお問い合わせには、お答えいたしかねますのでご了承ください。</p>
+        <p>選考結果について、個別のご連絡は行いません。ご来院の際に、院内の掲示物をご確認ください。</p>
+        <p class="duo__note">※ なお、必要に応じて、広報委員会からご連絡を差し上げることがあります。</p>
       </div>
     </div>
   </div>
@@ -333,25 +316,11 @@
 </footer>
 
 <script>
-/* 日付に合わせて「いまはここ」と投票ボタンを自動で切り替えます（日本時間）。
-   日程を変えるときは、各 <li> の data-start / data-end と、下の VOTE_OPEN / VOTE_CLOSE を直してください。 */
+/* 日付に合わせて投票ボタンを自動で切り替えます（日本時間）。日程を変えるときは VOTE_OPEN / VOTE_CLOSE を直してください。 */
 (function(){
   var VOTE_OPEN  = new Date("2026-10-08T00:00:00+09:00");
   var VOTE_CLOSE = new Date("2026-10-20T23:59:59+09:00");
   var now = new Date();
-
-  var items = document.querySelectorAll("#timeline .tl__item");
-  items.forEach(function(li){
-    var s = new Date(li.dataset.start + "T00:00:00+09:00");
-    var e = new Date(li.dataset.end   + "T23:59:59+09:00");
-    var tag = li.querySelector("[data-tag]");
-    if(now > e){ li.classList.add("is-done"); tag.textContent = "終了"; }
-    else if(now >= s){
-      li.classList.add("is-now"); tag.textContent = "いまここ";
-      document.getElementById("nowWhat").textContent = li.querySelector(".tl__what").textContent;
-      document.getElementById("nowWhen").textContent = li.querySelector(".tl__when").firstChild.textContent.trim();
-    } else { tag.textContent = "これから"; }
-  });
 
   var btn = document.getElementById("voteBtn"), st = document.getElementById("voteState");
   if(now >= VOTE_OPEN && now <= VOTE_CLOSE){
