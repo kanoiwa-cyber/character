@@ -110,7 +110,7 @@ var OPEN = new Date("2026-10-08T00:00:00+09:00");   /* 公開日時。?preview=1
   ENTRIES.forEach(function(d){
     var no = ("0" + d.no).slice(-2);
     var li = el("li","card"); li.id = "no" + no;
-    var img = el("img"); img.src = "thumb/No" + no + ".jpg"; img.width = 600; img.height = 600; img.loading = "lazy"; img.decoding = "async";
+    var img = el("img"); img.src = "No" + no + ".jpg"; img.width = 600; img.height = 600; img.loading = "lazy"; img.decoding = "async";
     img.alt = "作品番号" + d.no + (d.name ? "「" + d.name + "」" : "") + "のイラスト";
     li.appendChild(img);
     var body = el("div","card__body");
