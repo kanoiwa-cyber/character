@@ -126,6 +126,7 @@
   .staff{margin-top:26px;background:linear-gradient(160deg,#c92127,#8f1216);color:#fff5df;border:2px solid var(--gold-line);border-radius:14px;padding:22px clamp(18px,4vw,30px);display:grid;grid-template-columns:1fr auto;gap:16px 24px;align-items:center;}
   .staff h3{color:#fff5df;margin:0 0 4px;font-size:1.15rem;}
   .staff p{margin:0;font-size:.9rem;color:#f6dcbf;line-height:1.75;}
+  .staff--public{margin-top:14px;background:linear-gradient(160deg,#5a1a20,#3a0b10);}
   .staff__state{display:block;text-align:center;font-size:.8rem;font-weight:700;color:var(--gold-bright);margin-top:8px;}
 
   /* お知らせ2点 */
@@ -240,15 +241,15 @@
       <li class="tl__item">
         <span class="tl__no">5</span>
         <div class="tl__box">
-          <div class="tl__when">11月8日（日）〜 12月開催予定のクリスマス会まで</div>
+          <div class="tl__when">11月8日（日）〜12月25日（金） <span class="tag" data-end="2026-12-25" hidden>終了</span></div>
           <div class="tl__what">総選挙（一般投票）／同時開催「名づけ親募集」</div>
-          <p class="tl__txt">TOP5 の中から、地域のみなさま、職員など、<strong class="hl">どなたでも投票</strong>いただけます。みなさまの1票で、公式マスコットキャラクターが決まります。</p>
+          <p class="tl__txt">TOP5 の中から、地域のみなさま、職員など、<strong class="hl">どなたでも投票</strong>いただけます。みなさまの1票で、公式マスコットキャラクターが決まります。<a href="#ippan">投票ページのご案内はこちら</a></p>
           <dl class="tl__dl">
             <div><dt>投票できる数</dt><dd>1人1票</dd></div>
             <div><dt>投票方法</dt><dd>WEB投票、または院内に設置する投票箱（備え付けの投票用紙に記入）</dd></div>
             <div><dt>名づけ親募集</dt><dd>あなたが1票を投じるキャラクターに、ぜひ名前を付けてください。投票とあわせてご応募いただけます。</dd></div>
             <div><dt>名前の決め方</dt><dd>寄せられた名前を多数決で候補に絞り、院長・幹部・広報委員長による審査で決定します。</dd></div>
-            <div><dt>投票期間</dt><dd>11月8日（日）の TOP5 発表から、12月開催予定のクリスマス会まで</dd></div>
+            <div><dt>投票期間</dt><dd>11月8日（日）10時 〜 12月25日（金）23時59分</dd></div>
           </dl>
           <p class="tl__txt tl__small">※ 投票ページや投票箱の設置場所など、くわしい内容は、あらためてこのページと院内掲示でお知らせします。</p>
         </div>
@@ -256,7 +257,7 @@
       <li class="tl__item">
         <span class="tl__no">6</span>
         <div class="tl__box">
-          <div class="tl__when">総選挙の締め切り後</div>
+          <div class="tl__when">12月25日の締め切り後</div>
           <div class="tl__what">結果発表</div>
           <p class="tl__txt">最後に勝ち残ったキャラクターと、その名前を、WEBで発表します。どうぞお楽しみに。</p>
         </div>
@@ -311,6 +312,17 @@
           <span class="staff__state" id="voteState">10月8日（木）に公開します</span>
         </div>
       </div>
+
+      <div class="staff staff--public" id="ippan">
+        <div>
+          <h3>一般投票・名づけ親募集（どなたでも）</h3>
+          <p>11月8日（日）に発表する TOP5 の中から、お気に入りのキャラクターに1票を投じ、あわせて名前を付けてご応募いただけます。地域のみなさまも、職員も、どなたでもご参加ください。<strong>1人1票</strong>、締め切りは<strong>12月25日（金）23時59分</strong>です。</p>
+        </div>
+        <div>
+          <a class="btn" id="pubBtn" href="sousenkyo.html" aria-disabled="true">一般投票ページへ</a>
+          <span class="staff__state" id="pubState">11月8日（日）10時に公開します</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -345,6 +357,8 @@
 (function(){
   var VOTE_OPEN  = new Date("2026-10-08T00:00:00+09:00");
   var VOTE_CLOSE = new Date("2026-10-20T23:59:59+09:00");
+  var PUBLIC_OPEN  = new Date("2026-11-08T10:00:00+09:00");   /* 一般投票の公開日時 */
+  var PUBLIC_CLOSE = new Date("2026-12-25T23:59:59+09:00");  /* 一般投票・名づけ親募集の締め切り */
   var now = new Date();
 
   /* スケジュールの「終了」表示：各項目の最終日（data-end）を過ぎたら自動で表示 */
@@ -354,12 +368,15 @@
     }
   });
 
-  var btn = document.getElementById("voteBtn"), st = document.getElementById("voteState");
-  if(now >= VOTE_OPEN && now <= VOTE_CLOSE){
-    btn.removeAttribute("aria-disabled"); st.textContent = "10月20日（火）まで受付中";
-  } else if(now > VOTE_CLOSE){
-    btn.removeAttribute("href"); st.textContent = "院内投票は終了しました";
-  } else { btn.removeAttribute("href"); }
+  /* ボタンの切り替え：open より前は無効、open〜close は有効、close 以降は終了表示（close が null なら締め切りなし） */
+  function gate(btnId, stateId, open, close, openText, closedText){
+    var btn = document.getElementById(btnId), st = document.getElementById(stateId);
+    if(now < open){ btn.removeAttribute("href"); }                       /* 公開前：押せない */
+    else if(close && now > close){ btn.removeAttribute("href"); st.textContent = closedText; }
+    else { btn.removeAttribute("aria-disabled"); st.textContent = openText; }
+  }
+  gate("voteBtn","voteState", VOTE_OPEN, VOTE_CLOSE, "10月20日（火）まで受付中", "院内投票は終了しました");
+  gate("pubBtn","pubState",  PUBLIC_OPEN, PUBLIC_CLOSE, "12月25日（金）23時59分まで受付中", "一般投票は終了しました");
 })();
 </script>
 </body>
