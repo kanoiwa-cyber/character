@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>加納岩総合病院 公式マスコットキャラクター総選挙｜ご応募ありがとうございました</title>
+<meta name="description" content="加納岩総合病院 公式マスコットキャラクター総選挙の公募は9月30日で締め切りました。たくさんのご応募ありがとうございました。今後の予定（職員による院内投票・11/8 加納岩フェスでのTOP5発表・どなたでも参加できる総選挙）をお知らせします。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#210506; --bg-deep:#140203; --panel:#3f0b10; --panel-2:#521219;
+    --red:#b81d24; --maroon:#9a1419;
+    --gold:#e4c05a; --gold-bright:#f5e08c; --gold-deep:#b78f2d; --gold-line:#c9a848;
+    --cream:#f6ecce; --cream-2:#fcf6e6; --cream-3:#fbeecd; --line-cream:#e2cf9f;
+    --ink-cream:#f4e6bf; --ink-cream-soft:#e6cf9c; --ink:#4a2c12; --ink-soft:#7a5228;
+    --gold-grad:linear-gradient(180deg,#f7e79a 0%,#e3bf53 48%,#c39b2e 100%);
+    --shadow:0 14px 40px rgba(0,0,0,.5); --shadow-sm:0 6px 18px rgba(0,0,0,.35);
+    --radius:18px; --maxw:980px;
+    font-synthesis-weight:none;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+  body{
+    margin:0;color:var(--ink-cream);line-height:1.85;background:var(--bg-deep);
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic Medium","Yu Gothic",Meiryo,"Noto Sans JP",sans-serif;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background-image:
+      radial-gradient(circle, rgba(245,224,140,.5) 1px, transparent 1.7px),
+      radial-gradient(circle, rgba(245,224,140,.28) 1px, transparent 1.7px);
+    background-size:96px 96px,150px 150px;background-position:0 0,50px 70px;
+  }
+  h1,h2,h3,.display{font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif;}
+  a{color:var(--gold-bright);}
+  img{max-width:100%;height:auto;display:block;}
+  .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:20px;position:relative;z-index:1;}
+  :focus-visible{outline:3px solid var(--gold-bright);outline-offset:3px;border-radius:6px;}
+
+  /* ヘッダー */
+  .topbar{background:linear-gradient(180deg,#3a0a0c 0%,#250608 60%,#1c0304 100%);border-bottom:1px solid var(--gold-deep);position:sticky;top:0;z-index:40;box-shadow:0 6px 18px rgba(0,0,0,.55);}
+  .topbar::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--gold-grad);}
+  .topbar__inner{max-width:var(--maxw);margin-inline:auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+  .emblem{width:42px;height:42px;border-radius:50%;flex:none;display:grid;place-items:center;overflow:hidden;background:#fff;border:2px solid var(--gold);box-shadow:0 0 0 2px rgba(201,168,72,.28),0 3px 9px rgba(0,0,0,.55);}
+  .emblem img{width:76%;height:76%;object-fit:contain;}
+  .brand__text{display:flex;flex-direction:column;line-height:1.15;}
+  .brand__sub{font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--gold-bright);}
+  .brand__name{font-family:"Zen Maru Gothic",sans-serif;font-weight:900;font-size:1.08rem;color:#fff6e2;}
+  .topnav{display:flex;gap:6px;}
+  .topnav a{font-size:.84rem;font-weight:700;text-decoration:none;color:var(--ink-cream);padding:6px 12px;border-radius:999px;border:1px solid transparent;}
+  .topnav a:hover{border-color:var(--gold-line);color:var(--gold-bright);}
+
+  /* ボタン */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:"Zen Maru Gothic",sans-serif;font-weight:900;background:var(--gold-grad);color:#5a1015;border:1.5px solid var(--gold-deep);cursor:pointer;padding:15px 34px;border-radius:999px;font-size:1.05rem;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.6);transition:transform .18s ease,filter .18s ease;}
+  .btn:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn[aria-disabled="true"]{background:#5b3a3d;color:#d9c3a0;border-color:#7a5a4a;box-shadow:none;cursor:default;pointer-events:none;}
+
+  /* ヒーロー */
+  .hero{text-align:center;padding:0 0 10px;position:relative;z-index:1;}
+  .hero__title{width:100%;max-width:940px;margin:0 auto;}
+  .hero__body{margin-top:22px;}
+  .hero__body{padding:6px 20px 0;}
+  .closed{display:inline-block;margin:0 0 14px;padding:5px 18px;border-radius:999px;border:1px solid var(--gold-line);background:rgba(20,2,3,.55);color:var(--gold-bright);font-weight:700;font-size:.88rem;letter-spacing:.06em;}
+  .hero h1{margin:0;font-weight:900;color:#fff5df;font-size:clamp(1.7rem,6.4vw,2.9rem);line-height:1.35;text-shadow:0 3px 12px rgba(0,0,0,.6);}
+  .hero h1 span{display:inline-block;}
+  .hero__lead{max-width:620px;margin:16px auto 0;color:var(--ink-cream-soft);font-size:1rem;}
+
+  /* いまの段階 */
+  .now{margin:28px auto 0;max-width:620px;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:4px 18px;text-align:left;padding:16px 22px;border-radius:14px;background:rgba(20,2,3,.55);border:2px dashed var(--gold);box-shadow:var(--shadow-sm);}
+  .now__lab{grid-row:span 2;font-family:"Zen Maru Gothic",sans-serif;font-weight:900;color:#5a1015;background:var(--gold-grad);border:1.5px solid var(--gold-deep);border-radius:10px;padding:8px 12px;font-size:.9rem;line-height:1.3;text-align:center;}
+  .now__what{font-family:"Zen Maru Gothic",sans-serif;font-weight:900;font-size:1.2rem;color:#fff5df;line-height:1.4;}
+  .now__when{font-size:.9rem;color:var(--gold-bright);font-weight:700;}
+
+  section{padding:50px 0;position:relative;z-index:1;}
+  .sec-head{text-align:center;margin-bottom:28px;}
+  .sec-head h2{font-size:clamp(1.5rem,5.2vw,2.05rem);margin:0;color:var(--gold-bright);text-shadow:0 2px 8px rgba(0,0,0,.5);}
+  .sec-head p{color:var(--ink-cream-soft);margin:.6em auto 0;max-width:640px;}
+
+  .cream-card{background:linear-gradient(180deg,var(--cream-2),var(--cream));border:2px solid var(--gold-line);border-radius:var(--radius);box-shadow:var(--shadow),inset 0 0 0 1px rgba(255,255,255,.5);color:var(--ink);}
+
+  /* お礼 */
+  .thanks{padding-top:40px;}
+  .thanks__card{max-width:720px;margin-inline:auto;padding:clamp(26px,5vw,42px);}
+  .thanks__title{text-align:center;color:var(--maroon);font-size:clamp(1.3rem,4.6vw,1.7rem);margin:0;}
+  .thanks__title::after{content:"";display:block;width:60px;height:3px;background:var(--gold-grad);border-radius:2px;margin:12px auto 20px;}
+  .thanks__card p{margin:0 0 15px;line-height:1.95;}
+  .thanks__sign{text-align:right;color:var(--ink-soft);font-weight:700;font-size:.9rem;margin:20px 0 0 !important;}
+
+  /* スケジュール */
+  .tl{list-style:none;margin:0 auto;padding:0;max-width:720px;position:relative;}
+  .tl::before{content:"";position:absolute;left:21px;top:22px;bottom:22px;width:2px;background:linear-gradient(180deg,var(--gold-deep),rgba(183,143,45,.25));}
+  .tl__item{position:relative;padding:0 0 18px 64px;}
+  .tl__item:last-child{padding-bottom:0;}
+  .tl__no{position:absolute;left:0;top:0;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:"Zen Maru Gothic",sans-serif;font-weight:900;font-size:1.2rem;color:var(--gold-bright);background:var(--panel);border:2px solid var(--gold-line);}
+  .tl__box{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1.5px solid rgba(201,168,72,.55);border-radius:14px;padding:16px 20px;}
+  .tl__when{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-weight:700;color:var(--gold-bright);font-size:.95rem;}
+  .tl__what{font-family:"Zen Maru Gothic",sans-serif;font-weight:900;font-size:1.15rem;color:#fff5df;margin:2px 0 4px;}
+  .tl__txt{margin:0;font-size:.93rem;color:var(--ink-cream);}
+  .tag{font-size:.72rem;font-weight:700;padding:2px 10px;border-radius:999px;border:1px solid var(--gold-line);color:var(--ink-cream-soft);}
+  .tl__item.is-done .tl__no{background:#2b0709;color:var(--ink-cream-soft);border-color:#7d6530;}
+  .tl__item.is-done .tl__box{opacity:.72;}
+  .tl__item.is-now .tl__no{background:var(--gold-grad);color:#5a1015;border-color:var(--gold-deep);box-shadow:0 0 0 5px rgba(228,192,90,.22);}
+  .tl__item.is-now .tl__box{border:2px solid var(--gold);box-shadow:var(--shadow-sm);}
+  .tl__item.is-now .tag{background:var(--gold-grad);color:#5a1015;border-color:var(--gold-deep);}
+
+  /* 院内投票 */
+  .vote__card{padding:clamp(24px,5vw,40px);max-width:860px;margin-inline:auto;}
+  .vote__lead{margin:0 0 22px;}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 26px;}
+  .fact{background:#fffdf7;border:1.5px solid var(--line-cream);border-radius:12px;padding:14px 16px;}
+  .fact dt{font-size:.78rem;font-weight:700;color:var(--ink-soft);}
+  .fact dd{margin:2px 0 0;font-family:"Zen Maru Gothic",sans-serif;font-weight:900;color:var(--maroon);font-size:1.12rem;line-height:1.45;}
+  .fact dd small{display:block;font-family:inherit;font-weight:700;font-size:.78rem;color:var(--ink-soft);}
+  .vote__card h3{color:var(--maroon);font-size:1.15rem;margin:0 0 10px;}
+  .rules{margin:0;padding:0;list-style:none;border-top:1px solid var(--line-cream);}
+  .rules li{display:grid;grid-template-columns:9.5em 1fr;gap:4px 18px;padding:13px 2px;border-bottom:1px solid var(--line-cream);font-size:.95rem;}
+  .rules b{color:var(--maroon);}
+  .flow{list-style:none;counter-reset:f;margin:0 0 28px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  .flow li{counter-increment:f;position:relative;background:#fffdf7;border:1.5px solid var(--line-cream);border-radius:12px;padding:16px 16px 16px 58px;font-size:.9rem;line-height:1.7;}
+  .flow li::before{content:counter(f);position:absolute;left:14px;top:16px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-family:"Zen Maru Gothic",sans-serif;font-weight:900;color:#5a1015;background:var(--gold-grad);border:1.5px solid var(--gold-deep);}
+  .flow b{display:block;color:var(--maroon);font-family:"Zen Maru Gothic",sans-serif;font-size:1rem;}
+  .vote__note{font-size:.84rem;color:var(--ink-soft);margin:16px 0 0;line-height:1.75;}
+
+  /* 職員向け */
+  .staff{margin-top:26px;background:linear-gradient(160deg,#c92127,#8f1216);color:#fff5df;border:2px solid var(--gold-line);border-radius:14px;padding:22px clamp(18px,4vw,30px);display:grid;grid-template-columns:1fr auto;gap:16px 24px;align-items:center;}
+  .staff h3{color:#fff5df;margin:0 0 4px;font-size:1.15rem;}
+  .staff p{margin:0;font-size:.9rem;color:#f6dcbf;line-height:1.75;}
+  .staff__state{display:block;text-align:center;font-size:.8rem;font-weight:700;color:var(--gold-bright);margin-top:8px;}
+
+  /* お知らせ2点 */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:860px;margin-inline:auto;}
+  .duo__item{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1.5px solid rgba(201,168,72,.55);border-radius:14px;padding:20px 22px;}
+  .duo__item h3{margin:0 0 6px;color:var(--gold-bright);font-size:1.08rem;}
+  .duo__item p{margin:0;font-size:.93rem;}
+
+  footer{background:linear-gradient(180deg,#1c0304,#120203);border-top:3px solid var(--gold-line);text-align:center;padding:40px 20px;position:relative;z-index:1;}
+  footer .fin{font-family:"Zen Maru Gothic",sans-serif;font-weight:900;color:var(--gold-bright);font-size:clamp(1.1rem,4.2vw,1.5rem);margin:0 0 14px;}
+  footer .fbrand{font-weight:700;color:#fff5df;margin:0 0 4px;}
+  footer small{color:var(--ink-cream-soft);font-size:.8rem;line-height:1.8;display:block;}
+  footer .foot-contact{color:#fff5df;font-weight:700;margin:6px 0 0;}
+  footer .foot-note{color:var(--ink-cream-soft);font-size:.76rem;line-height:1.75;margin:14px auto 0;max-width:600px;opacity:.85;}
+
+  @media(max-width:760px){
+    .topnav{display:none;}
+    .facts,.flow{grid-template-columns:1fr;}
+    .rules li{grid-template-columns:1fr;}
+    .staff{grid-template-columns:1fr;text-align:center;}
+    .duo{grid-template-columns:1fr;}
+    .now{grid-template-columns:1fr;text-align:center;}
+    .now__lab{grid-row:auto;justify-self:center;}
+  }
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.btn{transition:none;}}
+  @media print{
+    body{background:#fff;color:#222;} body::before,.topbar{display:none;}
+    .tl__box,.duo__item,.staff{background:#fff !important;color:#222 !important;border-color:#999 !important;}
+    .tl__what,.tl__txt,.tl__when,.staff h3,.staff p,.duo__item h3,.sec-head h2,.hero h1,.hero__lead{color:#222 !important;text-shadow:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="https://kanoiwa-hospital.or.jp/" title="加納岩総合病院 公式サイトを開く">
+      <span class="emblem"><img src="data:image/png;base64,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" alt="加納岩総合病院 シンボルマーク" width="42" height="42"></span>
+      <span class="brand__text">
+        <span class="brand__sub">★ 公式マスコットキャラクター総選挙</span>
+        <span class="brand__name">加納岩総合病院</span>
+      </span>
+    </a>
+    <nav class="topnav" aria-label="ページ内メニュー">
+      <a href="#schedule">今後の予定</a>
+      <a href="#vote">院内投票について</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="top">
+  <img class="hero__title" src="title.webp" width="940" height="625" alt="加納岩総合病院 公式マスコットキャラクター総選挙" fetchpriority="high">
+  <div class="hero__body">
+    <p class="closed">公募は 9月30日 をもって締め切りました</p>
+    <h1><span>たくさんのご応募、</span><span>ありがとうございました</span></h1>
+    <p class="hero__lead">職員、患者さん・ご家族、地域のみなさまから、思いのこもったキャラクターをお寄せいただきました。ここからは、選考の段階に進みます。</p>
+
+    <div class="now" aria-live="polite">
+      <span class="now__lab">いまは<br>ここ</span>
+      <span class="now__what" id="nowWhat">応募作品のとりまとめ</span>
+      <span class="now__when" id="nowWhen">10月1日〜10月7日</span>
+    </div>
+  </div>
+</section>
+
+<section class="thanks">
+  <div class="wrap">
+    <div class="cream-card thanks__card">
+      <h2 class="thanks__title">ご応募いただいたみなさまへ</h2>
+      <p>8月1日から9月30日までの2か月間、総合窓口の投票箱とWEB受付フォームに、<strong>本当にたくさんのご応募</strong>をいただきました。心よりお礼申し上げます。</p>
+      <p>1枚1枚に描かれたキャラクターや、添えていただいたお名前の由来・エピソードを、広報委員会一同、うれしく拝見しています。紙でお寄せいただいた作品も、WEBからお送りいただいた作品も、すべて同じように大切に取り扱います。</p>
+      <p>このあとは、下記の予定で選考を進めてまいります。結果の発表まで、いましばらくお待ちください。</p>
+      <p class="thanks__sign">加納岩総合病院　広報委員会</p>
+    </div>
+  </div>
+</section>
+
+<section id="schedule">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>これからの予定</h2>
+      <p>当院の“顔”が決まるまでの流れです。</p>
+    </div>
+    <ol class="tl" id="timeline">
+      <li class="tl__item" data-start="2026-08-01" data-end="2026-09-30">
+        <span class="tl__no">1</span>
+        <div class="tl__box">
+          <div class="tl__when">8月1日〜9月30日 <span class="tag" data-tag></span></div>
+          <div class="tl__what">キャラクター（デザイン）の公募</div>
+          <p class="tl__txt">総合窓口の投票箱とWEB受付フォームで受け付けました。</p>
+        </div>
+      </li>
+      <li class="tl__item" data-start="2026-10-01" data-end="2026-10-07">
+        <span class="tl__no">2</span>
+        <div class="tl__box">
+          <div class="tl__when">10月1日〜10月7日 <span class="tag" data-tag></span></div>
+          <div class="tl__what">応募作品のとりまとめ</div>
+          <p class="tl__txt">紙とWEBでお寄せいただいた作品をひとつにまとめ、院内投票の準備を進めます。</p>
+        </div>
+      </li>
+      <li class="tl__item" data-start="2026-10-08" data-end="2026-10-20">
+        <span class="tl__no">3</span>
+        <div class="tl__box">
+          <div class="tl__when">10月8日（木）〜10月20日（火） <span class="tag" data-tag></span></div>
+          <div class="tl__what">職員による院内投票</div>
+          <p class="tl__txt">すべての応募作品を院内に掲示し、医療法人加納岩の職員が投票して、上位5作品（TOP5）を選びます。<a href="#vote">投票のしくみはこちら</a></p>
+        </div>
+      </li>
+      <li class="tl__item" data-start="2026-10-21" data-end="2026-11-08">
+        <span class="tl__no">4</span>
+        <div class="tl__box">
+          <div class="tl__when">11月8日（日） <span class="tag" data-tag></span></div>
+          <div class="tl__what">加納岩フェスで TOP5 を発表</div>
+          <p class="tl__txt">院内投票で選ばれた5作品を、加納岩フェスの会場でお披露目します。</p>
+        </div>
+      </li>
+      <li class="tl__item" data-start="2026-11-09" data-end="2099-12-31">
+        <span class="tl__no">5</span>
+        <div class="tl__box">
+          <div class="tl__when">TOP5 発表のあと <span class="tag" data-tag></span></div>
+          <div class="tl__what">総選挙（どなたでも投票できます）</div>
+          <p class="tl__txt">TOP5 が決まったあとは、患者さん・ご家族、地域のみなさまなど、<strong style="color:var(--gold-bright)">どなたでも投票</strong>いただけます。みなさまの1票で、公式マスコットキャラクターが決まります。投票方法は、あらためてこのページと院内掲示でお知らせします。</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="vote">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>職員による院内投票について</h2>
+      <p>お寄せいただいた作品を公平に選ぶため、次のとおり厳正に実施します。</p>
+    </div>
+
+    <div class="cream-card vote__card">
+      <p class="vote__lead">院内投票は、ご応募いただいたすべての作品の中から、総選挙に進む<strong>上位5作品（TOP5）</strong>を選ぶためのものです。日々患者さんと接している職員一人ひとりが、「当院にふさわしく、誰からも親しまれるキャラクター」という視点で1票を投じます。今回の投票（10月8日〜10月20日）は医療法人加納岩の職員のみで行い、TOP5 が決まったあとの総選挙は、どなたでもご参加いただけます。</p>
+
+      <dl class="facts">
+        <div class="fact"><dt>投票期間</dt><dd>10月8日〜10月20日<small>2026年（木）〜（火）</small></dd></div>
+        <div class="fact"><dt>投票できる人</dt><dd>医療法人加納岩の職員<small>今回の院内投票は職員限定</small></dd></div>
+        <div class="fact"><dt>投票できる数</dt><dd>1人1票<small>期間中1回限り</small></dd></div>
+      </dl>
+
+      <h3>投票の流れ</h3>
+      <ol class="flow">
+        <li><b>作品を見る</b><span>すべての応募作品に番号を付け、加納岩総合病院1階の職員通路に掲示します。</span></li>
+        <li><b>番号を控える</b><span>「これだ」と思う作品を1つ選び、作品番号を確認します。</span></li>
+        <li><b>WEBで投票する</b><span>職員専用の投票ページで、職員番号・氏名・作品番号を入力して投票します。</span></li>
+      </ol>
+
+      <h3>公正に行うための取り決め</h3>
+      <ul class="rules">
+        <li><b>1人1票・1回限り</b><span>投票は期間中1回のみです。投票後の変更・再投票はできません。</span></li>
+        <li><b>本人確認</b><span>投票時に職員番号と氏名を入力し、職員本人による投票であることを確認します。</span></li>
+        <li><b>重複・無効票の除外</b><span>同じ職員番号からの2回目以降の投票や、職員番号と氏名が一致しない投票は、集計から除きます。</span></li>
+        <li><b>専用ページで実施</b><span>投票は、職員だけが入れるパスワード付きのWEB投票ページで受け付けます。</span></li>
+        <li><b>すべての作品が対象</b><span>お寄せいただいた作品は、紙でのご応募もWEBからのご応募も、すべて同じ大きさ・同じ形式で掲示し、同じ条件で投票の対象とします。</span></li>
+        <li><b>キャラクターの原案に投票</b><span>今回選ぶのは、キャラクターの原案（デザイン）のみです。応募時に添えられたお名前は、投票の対象にしません。</span></li>
+        <li><b>応募者名は非表示</b><span>作品は応募者のお名前を伏せて番号のみで掲示し、作品そのものの魅力で選びます。</span></li>
+        <li><b>集計</b><span>広報委員会が集計し、得票数の多い順に上位5作品を選びます。</span></li>
+      </ul>
+      <p class="vote__note">※ 投票時にお預かりする職員番号・氏名は、本人確認と重複確認のためだけに使用し、誰がどの作品に投票したかを公表することはありません。</p>
+
+      <div class="staff">
+        <div>
+          <h3>職員のみなさんへ</h3>
+          <p>1階職員通路の掲示で作品をご覧のうえ、投票したい<strong>作品番号</strong>を控えて、下のボタン（または掲示のQRコード）から投票ページへお進みください。パスワードは掲示と院内のお知らせでご案内します。<strong>職員番号</strong>もご用意ください。</p>
+        </div>
+        <div>
+          <a class="btn" id="voteBtn" href="vote.html" aria-disabled="true">院内投票ページへ</a>
+          <span class="staff__state" id="voteState">10月8日（木）に公開します</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:10px;">
+  <div class="wrap">
+    <div class="duo">
+      <div class="duo__item">
+        <h3>お名前は「名づけ親募集」で決めます</h3>
+        <p>今回の院内投票と総選挙で選ぶのは、キャラクターの原案（デザイン）です。お名前は、後日あらためて<strong style="color:var(--gold-bright)">「名づけ親募集」</strong>を行って決定します。日程が決まりましたら、このページと院内掲示でお知らせします。</p>
+      </div>
+      <div class="duo__item">
+        <h3>ご応募いただいた方へのご連絡</h3>
+        <p>選考結果に関するご連絡は、応募時にご記入いただいたご連絡先へ、広報委員会から差し上げます。個別の選考状況についてのお問い合わせには、お答えいたしかねますのでご了承ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p class="fin">★★ たくさんのご応募、ありがとうございました ★★</p>
+  <p class="fbrand">加納岩総合病院　公式マスコットキャラクター総選挙</p>
+  <small>公募期間：8月1日〜9月30日（受付終了）</small>
+  <p class="foot-contact">お問い合わせ：加納岩総合病院　広報委員長　0553-22-2511（代）</p>
+  <p class="foot-note">※お寄せいただいた情報は、加納岩総合病院 広報委員会が管理し、本総選挙の運営・ご連絡・結果発表の目的にのみ使用します。応募作品は病院の広報物等に利用させていただく場合があります。</p>
+</footer>
+
+<script>
+/* 日付に合わせて「いまはここ」と投票ボタンを自動で切り替えます（日本時間）。
+   日程を変えるときは、各 <li> の data-start / data-end と、下の VOTE_OPEN / VOTE_CLOSE を直してください。 */
+(function(){
+  var VOTE_OPEN  = new Date("2026-10-08T00:00:00+09:00");
+  var VOTE_CLOSE = new Date("2026-10-20T23:59:59+09:00");
+  var now = new Date();
+
+  var items = document.querySelectorAll("#timeline .tl__item");
+  items.forEach(function(li){
+    var s = new Date(li.dataset.start + "T00:00:00+09:00");
+    var e = new Date(li.dataset.end   + "T23:59:59+09:00");
+    var tag = li.querySelector("[data-tag]");
+    if(now > e){ li.classList.add("is-done"); tag.textContent = "終了"; }
+    else if(now >= s){
+      li.classList.add("is-now"); tag.textContent = "いまここ";
+      document.getElementById("nowWhat").textContent = li.querySelector(".tl__what").textContent;
+      document.getElementById("nowWhen").textContent = li.querySelector(".tl__when").firstChild.textContent.trim();
+    } else { tag.textContent = "これから"; }
+  });
+
+  var btn = document.getElementById("voteBtn"), st = document.getElementById("voteState");
+  if(now >= VOTE_OPEN && now <= VOTE_CLOSE){
+    btn.removeAttribute("aria-disabled"); st.textContent = "10月20日（火）まで受付中";
+  } else if(now > VOTE_CLOSE){
+    btn.removeAttribute("href"); st.textContent = "院内投票は終了しました";
+  } else { btn.removeAttribute("href"); }
+})();
+</script>
+</body>
+</html>
