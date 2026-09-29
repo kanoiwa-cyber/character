@@ -243,7 +243,7 @@
       <li class="tl__item">
         <span class="tl__no">5</span>
         <div class="tl__box">
-          <div class="tl__when">11月8日（日）〜12月25日（金） <span class="tag" data-end="2026-12-25" hidden>終了</span></div>
+          <div class="tl__when">11月8日（日）〜12月11日（金） <span class="tag" data-end="2026-12-11" hidden>終了</span></div>
           <div class="tl__what">総選挙（一般投票）／同時開催「名づけ親募集」</div>
           <p class="tl__txt">TOP5 の中から、地域のみなさま、職員など、<strong class="hl">どなたでも投票</strong>いただけます。みなさまの1票で、公式マスコットキャラクターが決まります。<a href="#ippan">投票ページのご案内はこちら</a></p>
           <dl class="tl__dl">
@@ -251,7 +251,7 @@
             <div><dt>投票方法</dt><dd>WEB投票、または院内に設置する投票箱（備え付けの投票用紙に記入）</dd></div>
             <div><dt>名づけ親募集</dt><dd>原案に名前が付いているキャラクターもありますが、「こんな名前はどう？」という新しい名前も募集します。あなたが1票を投じるキャラクターに、ぜひ名前を付けてください。原案の名前のままがよいと思う方は、その名前をそのまま書いてご応募ください。</dd></div>
             <div><dt>名前の決め方</dt><dd>寄せられた名前を多数決で候補に絞り、院長・幹部・広報委員長による審査で決定します。</dd></div>
-            <div><dt>投票期間</dt><dd>11月8日（日）10時 〜 12月25日（金）23時59分</dd></div>
+            <div><dt>投票期間</dt><dd>11月8日（日）10時 〜 12月11日（金）23時59分</dd></div>
           </dl>
           <p class="tl__txt tl__small">※ 投票ページや投票箱の設置場所など、くわしい内容は、あらためてこのページと院内掲示でお知らせします。</p>
         </div>
@@ -259,7 +259,7 @@
       <li class="tl__item">
         <span class="tl__no">6</span>
         <div class="tl__box">
-          <div class="tl__when">12月25日の締め切り後</div>
+          <div class="tl__when">12月11日の締め切り後</div>
           <div class="tl__what">結果発表</div>
           <p class="tl__txt">最後に勝ち残ったキャラクターと、その名前を、WEBで発表します。どうぞお楽しみに。</p>
         </div>
@@ -318,7 +318,7 @@
       <div class="staff staff--public" id="ippan">
         <div>
           <h3>一般投票・名づけ親募集（どなたでも）</h3>
-          <p>11月8日（日）に発表する TOP5 の中から、お気に入りのキャラクターに1票を投じ、あわせて名前（新しい名前でも、原案の名前のままでも）を付けてご応募いただけます。地域のみなさまも、職員も、どなたでもご参加ください。<strong>1人1票</strong>、締め切りは<strong>12月25日（金）23時59分</strong>です。</p>
+          <p>11月8日（日）に発表する TOP5 の中から、お気に入りのキャラクターに1票を投じ、あわせて名前（新しい名前でも、原案の名前のままでも）を付けてご応募いただけます。地域のみなさまも、職員も、どなたでもご参加ください。<strong>1人1票</strong>、締め切りは<strong>12月11日（金）23時59分</strong>です。</p>
         </div>
         <div>
           <a class="btn" id="pubBtn" href="sousenkyo.html" aria-disabled="true">一般投票ページへ</a>
@@ -360,7 +360,7 @@
   var VOTE_OPEN  = new Date("2026-10-08T00:00:00+09:00");
   var VOTE_CLOSE = new Date("2026-10-20T23:59:59+09:00");
   var PUBLIC_OPEN  = new Date("2026-11-08T10:00:00+09:00");   /* 一般投票の公開日時 */
-  var PUBLIC_CLOSE = new Date("2026-12-25T23:59:59+09:00");  /* 一般投票・名づけ親募集の締め切り */
+  var PUBLIC_CLOSE = new Date("2026-12-11T23:59:59+09:00");  /* 一般投票・名づけ親募集の締め切り */
   var now = new Date();
 
   /* スケジュールの「終了」表示：各項目の最終日（data-end）を過ぎたら自動で表示 */
@@ -379,7 +379,7 @@
   }
   gate("entBtn","entState", VOTE_OPEN, null, "", "");
   gate("voteBtn","voteState", VOTE_OPEN, VOTE_CLOSE, "10月20日（火）まで受付中", "院内投票は終了しました");
-  gate("pubBtn","pubState",  PUBLIC_OPEN, PUBLIC_CLOSE, "12月25日（金）23時59分まで受付中", "一般投票は終了しました");
+  gate("pubBtn","pubState",  PUBLIC_OPEN, PUBLIC_CLOSE, "12月11日（金）23時59分まで受付中", "一般投票は終了しました");
 })();
 </script>
 </body>
