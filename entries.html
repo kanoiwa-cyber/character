@@ -79,11 +79,11 @@
   <div id="content" hidden>
     <div class="head">
       <h1>応募作品のご紹介</h1>
-      <p>お寄せいただいた作品を、作品番号つきでご紹介します。キャラクターのデザインとあわせて、込められたアイデアや、名前の由来・エピソードもぜひご覧ください。</p>
+      <p>お寄せいただいた作品を、作品番号つきでご紹介します。キャラクターのデザインとあわせて、名前の由来・エピソードもぜひご覧ください。</p>
       <div class="notes">
         <ul>
           <li>応募された方のお名前は掲載していません。</li>
-          <li>アイデアや由来・エピソードは、いただいた内容をそのまま掲載しています。</li>
+          <li>由来・エピソードは、いただいた内容をそのまま掲載しています。</li>
           <li>キャラクターの名前は、原案として付けていただいたものです。総選挙（一般投票）では、新しい名前のご提案も募集します。</li>
         </ul>
       </div>
@@ -117,9 +117,8 @@ var OPEN = new Date("2026-10-08T00:00:00+09:00");   /* 公開日時。?preview=1
     body.appendChild(el("div","card__no","作品番号 No." + no));
     body.appendChild(d.name ? el("h2","card__name maru", d.name) : el("h2","card__name is-none","（名前はまだありません）"));
     if(d.from){ var by = el("div","by"); by.appendChild(el("span","tag", d.from + "からのご応募")); body.appendChild(by); }
-    if(d.idea || d.story){
+    if(d.story){
       var dl = el("dl");
-      if(d.idea){ dl.appendChild(el("dt",null,"キャラクターのアイデア")); dl.appendChild(el("dd",null,d.idea)); }
       if(d.story){ dl.appendChild(el("dt",null,"名前の由来・エピソード")); dl.appendChild(el("dd",null,d.story)); }
       body.appendChild(dl);
     }
