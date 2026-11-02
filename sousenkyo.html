@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>総選挙 一般投票・名づけ親募集｜加納岩総合病院 公式マスコットキャラクター総選挙</title>
-<meta name="description" content="加納岩総合病院 公式マスコットキャラクター総選挙。職員投票で選ばれたTOP5の中から、お気に入りのキャラクターに1票を。名前のご提案（名づけ親募集）も同時に受け付けます。">
+<meta name="description" content="加納岩総合病院 公式マスコットキャラクター総選挙。職員投票で選ばれたTOP6の中から、お気に入りのキャラクターに1票を。名前のご提案（名づけ親募集）も同時に受け付けます。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet">
@@ -118,7 +118,7 @@
 
   <div id="app" hidden>
     <div class="head">
-      <span class="kicker">職員投票で選ばれた TOP5 が決定！</span>
+      <span class="kicker">職員投票で選ばれた TOP6 が決定！（同票のため5作品→6作品）</span>
       <h1>総選挙 一般投票<br>＆ 名づけ親募集</h1>
       <p>加納岩総合病院の“顔”を、みなさまの1票で決めます。地域のみなさま、患者さん・ご家族、職員など、どなたでも投票いただけます。あわせて、キャラクターの名前もご提案ください。</p>
       <div class="period"><small>投票期間</small><b>11月8日（日）〜 12月11日（金）23:59</b></div>
@@ -133,7 +133,7 @@
 
       <section class="card">
         <h2 class="step"><i>2</i>名前を付ける（名づけ親募集）</h2>
-        <p class="hint">選んだキャラクターに、あなたが「こんな名前はどう？」と思う名前を付けてください。原案の名前のままがよい方は、チェックを入れるだけで大丈夫です。寄せられた名前は多数決で候補を絞り、院長・幹部・広報委員長による審査で決定します。</p>
+        <p class="hint">選んだキャラクターに、あなたが「こんな名前はどう？」と思う名前を付けてください。原案の名前のままがよい方は、チェックを入れるだけで大丈夫です。寄せられた名前を候補に、院長・幹部・広報委員長による審査で決定します。</p>
         <div class="namebox" id="namebox">まず、上でキャラクターを選んでください。</div>
         <label class="keep" id="keepWrap" hidden><input type="checkbox" id="keep"> 原案の名前のままでよい（この名前を推します）</label>
         <div class="field" id="f-name">
@@ -186,13 +186,14 @@
 const VOTE_ENDPOINT = "";
 const OPEN  = new Date("2026-11-08T10:00:00+09:00");
 const CLOSE = new Date("2026-12-11T23:59:59+09:00");
-/* 院内投票で選ばれた TOP5（表示順） */
-const TOP5 = [
-  { no:53, name:"カノンくん" },
-  { no:56, name:"かのういわん" },
-  { no:3,  name:"" },
+/* 院内投票で選ばれた TOP6（表示順）※同票のため5作品→6作品 */
+const TOP6 = [
   { no:2,  name:"かのちゃん（ぶどう）" },
-  { no:27, name:"メタセコイヤ君" }
+  { no:3,  name:"" },
+  { no:27, name:"メタセコイヤ君" },
+  { no:47, name:"かのん" },
+  { no:53, name:"カノンくん" },
+  { no:56, name:"かのういわん" }
 ];
 /* ▲▲▲ ここまで ▲▲▲  公開前の動作確認は、URLの末尾に ?preview=1 を付けてください。 */
 
@@ -200,7 +201,7 @@ const TOP5 = [
   const $ = id => document.getElementById(id);
   const preview = /[?&]preview=1/.test(location.search), now = new Date();
   function closed(when, text){ $("closedWhen").textContent = when; $("closedText").textContent = text; $("closed").hidden = false; }
-  if(!preview && now < OPEN)  return closed("11月8日（日）10時 スタート", "ただいま準備中です。TOP5 の発表とあわせて、このページで投票と名づけ親の受付を始めます。");
+  if(!preview && now < OPEN)  return closed("11月8日（日）10時 スタート", "ただいま準備中です。TOP6 の発表とあわせて、このページで投票と名づけ親の受付を始めます。");
   if(!preview && now > CLOSE) return closed("12月11日（金）をもって終了しました", "たくさんのご投票、ありがとうございました。結果は集計のうえ、2027年の年明けにこのWEBサイトで発表します。こうご期待！");
   let device = "";
   try{
@@ -212,7 +213,7 @@ const TOP5 = [
 
   const pad = n => ("0" + n).slice(-2);
   const dispName = d => d.name || "（名前はまだありません）";
-  TOP5.forEach(function(d){
+  TOP6.forEach(function(d){
     const li = document.createElement("li"), lab = document.createElement("label"), inp = document.createElement("input"),
           img = document.createElement("img"), sp = document.createElement("span"), b = document.createElement("b"), sm = document.createElement("small"), more = document.createElement("a");
     lab.className = "pick"; inp.type = "radio"; inp.name = "entry"; inp.value = d.no;
@@ -223,7 +224,7 @@ const TOP5 = [
     lab.append(inp, img, sp, more); li.appendChild(lab); $("grid").appendChild(li);
   });
 
-  function picked(){ const r = document.querySelector('input[name="entry"]:checked'); return r ? TOP5.find(d => d.no == r.value) : null; }
+  function picked(){ const r = document.querySelector('input[name="entry"]:checked'); return r ? TOP6.find(d => d.no == r.value) : null; }
   function label(d){ return "No." + pad(d.no) + "　" + dispName(d); }
   function finalName(){ const d = picked(); if(!d) return ""; return $("keep").checked ? (d.name || "") : $("nameIdea").value.trim(); }
   function refresh(){
